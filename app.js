@@ -2,25 +2,25 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-// Load environment variables
-dotenv.config();
+dotenv.config(); // Load environment variables
 
 const app = express();
 
 // CORS Configuration
 const corsOptions = {
   origin: [
-    "http://localhost:3000", // Local frontend
-    "https://stackverse-frontend.vercel.app", // Deployed frontend
+    "http://localhost:3000", // Frontend during local development
+    "https://stackverse-frontend.vercel.app", // Your deployed frontend URL
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
+  credentials: true, // Allow credentials if needed (cookies, authentication)
 };
 
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Preflight requests
+app.use(cors(corsOptions)); // Apply CORS with the specified options
 
+// Handle preflight requests for all routes
+app.options("*", cors(corsOptions));
 
 // Middleware
 app.use(express.json());
