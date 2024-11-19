@@ -10,16 +10,17 @@ const app = express();
 // CORS Configuration
 const corsOptions = {
   origin: [
-    "http://localhost:3000", // Frontend during local development
-    "https://stackverse-frontend.vercel.app", // Replace with your deployed frontend URL
+    "http://localhost:3000", // Local frontend
+    "https://stackverse-frontend.vercel.app", // Deployed frontend
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true, // If cookies or authentication are involved
+  credentials: true,
 };
 
-app.use(cors(corsOptions)); // Apply CORS middleware
-app.options("*", cors(corsOptions)); // Handle preflight requests
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Preflight requests
+
 
 // Middleware
 app.use(express.json());
